@@ -1,8 +1,3 @@
-Here is a professional `README.md` for your project. It explains the "Why," the "How," and covers the platform differences between X11 and Wayland.
-
-### Save this as `README.md` in your `rncw` folder:
-
-```markdown
 # rncw (Rename Current Workspace)
 
 A lightweight, high-performance C utility designed to rename the currently active workspace in X11 environments (Openbox, LXQt, Fluxbox, etc.).
