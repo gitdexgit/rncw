@@ -76,9 +76,3 @@ For X11 "Daily Drivers," `rncw` remains the most robust solution for maintaining
 4. Reconstructs a new buffer, replacing only the segment belonging to the current index.
 5. Uses `XChangeProperty` with `PropModeReplace` to update the X Server.
 ```
-
-### Pro-Tip:
-Since you have a `git` repo initialized, you can now do:
-1. `git add README.md rncw.c`
-2. `git commit -m "Initial commit: High-speed X11 workspace renamer"`
-3. Now you have a clean, documented project for your Arch setup!
