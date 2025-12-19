@@ -1,3 +1,33 @@
+# Using rofi wrapper around rncw
+
+![Peek 2025-12-20 00-13](https://github.com/user-attachments/assets/a05a388a-51b6-44f2-9467-016c82da87e2)
+
+This is a script named `rncd` (Rename Current Desktop) in my `~/.local/bin` which is bound to a hotkey in my keyboard. Works fine for me.
+
+```bash
+#!/usr/bin/bash
+
+# 1. Get current workspace index
+idx=$(xdotool get_desktop)
+
+# 2. Extract current names and pick the one at our index
+current_name=$(xprop -root _NET_DESKTOP_NAMES | perl -ne 'print "$1\n" while /"(.*?)"/g' | sed -n "$((idx + 1))p")
+
+# 3. Prompt user via Rofi
+# Using -mesg to show current name and -filter for initial text
+new_name=$(rofi -dmenu -p "Rename Workspace $idx:" -mesg "Current: $current_name" -filter "$current_name" -lines 0 -theme-str 'window {width: 500px;}')
+
+# Alternative if the above doesn't work:
+# new_name=$(echo "$current_name" | rofi -dmenu -p "Rename Workspace $idx:" -lines 0 -theme-str 'window {width: 500px;}')
+
+# 4. If user didn't hit Escape or cancel, feed it to your C tool
+if [[ -n "$new_name" ]]; then
+    rncw "$new_name"
+fi
+```
+
+
+
 # rncw (Rename Current Workspace)
 
 A lightweight, high-performance C utility designed to rename the currently active workspace in X11 environments (Openbox, LXQt, Fluxbox, etc.).
